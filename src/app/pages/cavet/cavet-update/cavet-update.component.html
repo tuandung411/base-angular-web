@@ -1,0 +1,602 @@
+<div class="app-cavet-update">
+  <div class="page-header">
+    <span
+      (click)="directToBoard()"
+      style="margin-right: 10px"
+      nz-icon
+      nzType="arrow-left"
+      nzTheme="outline"
+    ></span>
+    {{ idCase == "add" ? "Tạo tác vụ lấy cà vẹt mới" : currentCase.code }}
+  </div>
+  <div class="page-container">
+    <div class="page-content">
+      <div class="border-bottom">
+        <nz-button-group id="session-button">
+          <button
+            nz-button
+            nzType="text"
+            [ngClass]="{ sectionButton: true, selected: section === 'chung' }"
+            (click)="goSection('chung')"
+          >
+            Thông tin chung
+          </button>
+          <button
+            nz-button
+            nzType="text"
+            [ngClass]="{ sectionButton: true, selected: section === 'KH' }"
+            (click)="goSection('KH')"
+          >
+            Thông tin KH
+          </button>
+          <button
+            nz-button
+            nzType="text"
+            (click)="goSection('RM')"
+            [ngClass]="{ sectionButton: true, selected: section === 'RM' }"
+          >
+            Thông tin RM
+          </button>
+          <button
+            nz-button
+            nzType="text"
+            (click)="goSection('TS')"
+            [ngClass]="{ sectionButton: true, selected: section === 'TS' }"
+          >
+            Tài sản
+          </button>
+        </nz-button-group>
+      </div>
+
+      <!-- Case công chứng -->
+      <form nz-form [formGroup]="formCase">
+        <div class="border-bottom" id="chung">
+          <strong>Thông tin chung</strong>
+          <div nz-row>
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control>
+                <nz-form-label nzFor="branchCode" nzRequired
+                  >Mã chi nhánh</nz-form-label
+                >
+                <input
+                  [readOnly]="true"
+                  nz-input
+                  name="branchCode"
+                  formControlName="branchCode"
+                  type="text"
+                  id="branchCode"
+                />
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item
+              *ngIf="listBranch.length == 1"
+              nz-col
+              [nzXs]="12"
+              [nzSm]="8"
+              [nzLg]="6"
+              [nzXl]="6"
+            >
+              <nz-form-control>
+                <nz-form-label nzRequired nzFor="branchCode"
+                  >Chi nhánh</nz-form-label
+                >
+                <input
+                  nz-input
+                  [readOnly]="true"
+                  [ngModel]="formCase.get('branchName')?.value"
+                  type="text"
+                  id="branchCode"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item
+              *ngIf="listBranch.length > 1"
+              nz-col
+              [nzXs]="12"
+              [nzSm]="8"
+              [nzLg]="6"
+              [nzXl]="6"
+            >
+              <nz-form-control nzErrorTip="Chưa chọn chi nhánh">
+                <nz-form-label nzRequired nzFor="idStaff"
+                  >Chi nhánh</nz-form-label
+                >
+                <nz-select
+                  nzShowSearch
+                  nzAllowClear
+                  nzPlaceHolder="Chọn chi nhánh"
+                  formControlName="branchCodeHub"
+                  (ngModelChange)="setBranchCodeHub($event)"
+                >
+                  <nz-option
+                    *ngFor="let option of listBranch"
+                    [nzValue]="option.branchCode"
+                    nzLabel="{{ option.branchName }}"
+                  >
+                  </nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control nzErrorTip="Chưa điền mã tác vụ">
+                <nz-form-label nzFor="code" nzRequired>Mã tác vụ</nz-form-label>
+                <input
+                  #autoFocus
+                  nz-input
+                  name="code"
+                  formControlName="code"
+                  type="text"
+                  id="code"
+                />
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control>
+                <nz-form-label nzFor="idStaff">Shared Inbox </nz-form-label>
+                <nz-select
+                  nzShowSearch
+                  nzAllowClear
+                  nzPlaceHolder="Nhân viên thuộc nhóm"
+                  formControlName="currentGroupId"
+                  (ngModelChange)="changeGroup($event)"
+                >
+                  <nz-option
+                    *ngFor="let option of listGroupStaff"
+                    [nzValue]="option.id"
+                    nzLabel="{{ option.appGroupName }}"
+                  >
+                  </nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control>
+                <nz-form-label nzFor="idStaff"
+                  >Chuyên viên hỗ trợ thực hiện
+                </nz-form-label>
+                <nz-select
+                  nzShowSearch
+                  nzAllowClear
+                  nzPlaceHolder="Chọn nhân viên"
+                  formControlName="currentUserId"
+                >
+                  <nz-option
+                    *ngFor="let option of listStaff"
+                    [nzValue]="option.id"
+                    nzLabel="{{ option.fullname }}"
+                  >
+                  </nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-label nzFor="province"
+                >Địa điểm thực hiện dự kiến (Tỉnh)</nz-form-label
+              >
+              <nz-form-control>
+                <nz-select
+                  nzShowSearch
+                  nzAllowClear
+                  nzPlaceHolder="Chọn tỉnh"
+                  (ngModelChange)="changeProvince($event)"
+                  [(ngModel)]="selectedProvince"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <nz-option
+                    *ngFor="let province of listProvince"
+                    [nzValue]="province.id"
+                    nzLabel="{{ province.name }}"
+                  >
+                  </nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control nzErrorTip="Chưa chọn địa điểm thực hiện">
+                <nz-form-label nzRequired nzFor="locationVehicleRegistration"
+                  >Địa điểm thực hiện</nz-form-label
+                >
+                <nz-select
+                  nzShowSearch
+                  nzAllowClear
+                  nzPlaceHolder="Chọn"
+                  [ngModel]="formCase.get('branchVehicleRegistrationId')?.value"
+                  (ngModelChange)="changeBranchVehicle($event)"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <nz-option
+                    *ngFor="let option of listLocationRegistration"
+                    [nzValue]="option.id"
+                    nzLabel="{{ option.location }}"
+                  >
+                  </nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-label nzFor="email"
+                >Thời gian thực hiện dự kiến</nz-form-label
+              >
+              <nz-form-control>
+                <nz-date-picker
+                  [nzDisabledDate]="disabledDate"
+                  formControlName="timeVehicleRegistration"
+                  nzShowTime
+                  [nzFormat]="dateFormat"
+                ></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div class="border-bottom" id="KH">
+          <strong>Thông tin khách hàng</strong>
+          <div nz-row>
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control nzErrorTip="Chưa nhập mã khách hàng">
+                <nz-form-label nzFor="customerCode" nzRequired
+                  >Mã khách hàng</nz-form-label
+                >
+                <input
+                  nz-input
+                  name="customerCode"
+                  formControlName="customerCode"
+                  type="text"
+                  id="customerCode"
+                />
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control [nzErrorTip]="nameError">
+                <nz-form-label nzFor="customerName" nzRequired
+                  >Tên khách hàng</nz-form-label
+                >
+                <input
+                  nz-input
+                  name="customerName"
+                  formControlName="customerName"
+                  type="text"
+                  id="customerName"
+                />
+                <ng-template #nameError let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Chưa nhập tên khách hàng
+                  </ng-container>
+                  <ng-container *ngIf="control.hasError('validated')">
+                    Tên không hợp lệ
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control [nzErrorTip]="phoneError">
+                <nz-form-label nzRequired nzFor="customerPhone"
+                  >Số điện thoại</nz-form-label
+                >
+                <input
+                  nz-input
+                  formControlName="customerPhone"
+                  type="text"
+                  id="customerPhone"
+                />
+                <ng-template #phoneError let-control>
+                  <ng-container *ngIf="control.hasError('validated')">
+                    Số điện thoại không hợp lệ
+                  </ng-container>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Chưa nhập SĐT
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control [nzErrorTip]="emailError">
+                <nz-form-label nzRequired nzFor="customerEmail"
+                  >Email</nz-form-label
+                >
+                <input
+                  nz-input
+                  formControlName="customerEmail"
+                  type="text"
+                  id="customerEmail"
+                />
+                <ng-template #emailError let-control>
+                  <ng-container *ngIf="control.hasError('validated')">
+                    Email không hợp lệ
+                  </ng-container>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Chưa nhập email
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control nzErrorTip="Chưa chọn loại khách hàng">
+                <nz-form-label nzRequired nzFor="customerType"
+                  >Loại khách hàng</nz-form-label
+                >
+                <nz-select
+                  nzShowSearch
+                  nzAllowClear
+                  nzPlaceHolder="Chọn "
+                  formControlName="customerType"
+                >
+                  <nz-option
+                    *ngFor="let option of listCustomerType"
+                    [nzValue]="option.id"
+                    nzLabel="{{ option.name }}"
+                  >
+                  </nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <div class="border-bottom" id="RM">
+          <strong>Thông tin RM</strong>
+          <div nz-row>
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control [nzErrorTip]="nameError">
+                <nz-form-label nzRequired nzFor="rmName">Tên RM</nz-form-label>
+                <input
+                  nz-input
+                  name="rmName"
+                  formControlName="rmName"
+                  type="text"
+                  id="rmName"
+                />
+                <ng-template #nameError let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Chưa nhập tên RM
+                  </ng-container>
+                  <ng-container *ngIf="control.hasError('validated')">
+                    Tên không hợp lệ
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control [nzErrorTip]="phoneRmError">
+                <nz-form-label nzRequired nzFor="rmPhone"
+                  >Số điện thoại RM</nz-form-label
+                >
+                <input
+                  nz-input
+                  name="rmPhone"
+                  formControlName="rmPhone"
+                  id="rmPhone"
+                />
+                <ng-template #phoneRmError let-control>
+                  <ng-container *ngIf="control.hasError('validated')">
+                    Số điện thoại không hợp lệ
+                  </ng-container>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Chưa nhập SĐT
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <!-- Tài sản  -->
+        <div class="border-bottom" id="TS" style="padding-bottom: 15px">
+          <strong>Tài sản </strong>
+
+          <div style="margin-top: 10px; margin-bottom: 10px">
+            <label nz-checkbox formControlName="elseAssetOwner"
+              >Khách hàng không phải là chủ sở hữu</label
+            >
+          </div>
+
+          <div nz-row *ngIf="formCase.get('elseAssetOwner')?.value == true">
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-label nzFor="assetOwner">Chủ sở hữu </nz-form-label>
+              <nz-form-control [nzErrorTip]="nameError">
+                <input
+                  nz-input
+                  formControlName="assetOwner"
+                  type="text"
+                  id="assetOwner"
+                />
+                <ng-template #nameError let-control>
+                  <ng-container *ngIf="control.hasError('validated')">
+                    Tên không hợp lệ
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item nz-col [nzXs]="12" [nzSm]="8" [nzLg]="6" [nzXl]="6">
+              <nz-form-control [nzErrorTip]="phoneError">
+                <nz-form-label nzFor="assetOwnerPhone"
+                  >SĐT chủ sở hữu</nz-form-label
+                >
+                <input
+                  nz-input
+                  formControlName="assetOwnerPhone"
+                  type="text"
+                  id="assetOwnerPhone"
+                />
+                <ng-template #phoneError let-control>
+                  <ng-container *ngIf="control.hasError('validated')">
+                    Số điện thoại không hợp lệ
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <ng-container formArrayName="assets">
+            <ng-container
+              *ngFor="let asset of assets.controls; let idx = index"
+              [formGroupName]="idx"
+            >
+              <div nz-row>
+                <div nz-col [nzSpan]="10">
+                  <strong class="asset-name">Tài sản {{ idx + 1 }}</strong>
+                  <button
+                    nz-button
+                    (click)="removeAsset(idx)"
+                    nzDanger
+                    nzType="text"
+                    nzShape="round"
+                  >
+                    <span nz-icon nzType="delete"></span>
+                  </button>
+                </div>
+              </div>
+              <div nz-row>
+                <nz-form-item
+                  nz-col
+                  [nzXs]="12"
+                  [nzSm]="8"
+                  [nzLg]="6"
+                  [nzXl]="6"
+                >
+                  <nz-form-control nzErrorTip="Chưa nhập số biển kiểm soát">
+                    <nz-form-label nzRequired nzFor="idAsset"
+                      >Số biển kiểm soát</nz-form-label
+                    >
+                    <input nz-input formControlName="legalPaperType" />
+                  </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item
+                  nz-col
+                  [nzXs]="12"
+                  [nzSm]="8"
+                  [nzLg]="6"
+                  [nzXl]="6"
+                >
+                  <nz-form-control nzErrorTip="Chưa chọn loại tài sản">
+                    <nz-form-label nzRequired nzFor="idAsset"
+                      >Loại tài sản</nz-form-label
+                    >
+                    <nz-select
+                      nzShowSearch
+                      nzAllowClear
+                      nzPlaceHolder="Chọn "
+                      formControlName="typeId"
+                    >
+                      <nz-option
+                        *ngFor="let option of assetList"
+                        [nzValue]="option.typeId"
+                        nzLabel="{{ option.typeName }}"
+                      >
+                      </nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item
+                  nz-col
+                  [nzXs]="12"
+                  [nzSm]="8"
+                  [nzLg]="6"
+                  [nzXl]="6"
+                >
+                  <nz-form-control [nzErrorTip]="valueError">
+                    <nz-form-label nzFor="value" nzRequired
+                      >Giá trị tài sản</nz-form-label
+                    >
+                    <nz-input-group nzSuffix="VNĐ">
+                      <input
+                        nz-input
+                        placeholder="Ví dụ: 100.000.000"
+                        formControlName="value"
+                        name="value"
+                        type="text"
+                        (change)="changeValueAsset($event, idx)"
+                      />
+                      <ng-template #valueError let-control>
+                        <ng-container *ngIf="control.hasError('required')">
+                          Chưa nhập giá trị tài sản
+                        </ng-container>
+                        <ng-container *ngIf="control.hasError('validated')">
+                          Định dạng giá trị tài sản không hợp lệ
+                        </ng-container>
+                      </ng-template>
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item
+                  nz-col
+                  [nzXs]="12"
+                  [nzSm]="8"
+                  [nzLg]="6"
+                  [nzXl]="6"
+                >
+                  <nz-form-control nzErrorTip="Chưa chọn loại tiền">
+                    <nz-form-label nzRequired nzFor="idAsset"
+                      >Loại tiền</nz-form-label
+                    >
+                    <nz-select
+                      nzShowSearch
+                      nzAllowClear
+                      nzPlaceHolder="Chọn "
+                      formControlName="currencyType"
+                    >
+                      <nz-option
+                        *ngFor="let option of listCurrency"
+                        [nzValue]="option"
+                        nzLabel="{{ option }}"
+                      >
+                      </nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </ng-container>
+          </ng-container>
+          <button
+            style="margin-top: 20px"
+            nz-button
+            nzType="primary"
+            (click)="addAsset(null)"
+            nzGhost
+          >
+            Thêm tài sản +
+          </button>
+        </div>
+      </form>
+      <!-- <pre>{{ formCase.value | json }}</pre> -->
+      <div nz-row nzJustify="end">
+        <div nz-col>
+          <button
+            (click)="directToBoard()"
+            class="primary-button"
+            nz-button
+            nzType="primary"
+            nzDanger
+          >
+            Hủy bỏ
+          </button>
+        </div>
+        <div nz-col style="margin-left: 5px">
+          <button
+            class="primary-button"
+            nz-button
+            (click)="submitForm()"
+            nzType="primary"
+          >
+            {{ idCase != "add" ? "Cập nhật" : "Tạo mới" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <ng-container>
+    <app-loading *ngIf="isLoadingSpin"></app-loading>
+  </ng-container>
+</div>

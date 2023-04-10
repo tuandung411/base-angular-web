@@ -1,0 +1,6 @@
+@import "../../../../assets/styles/color.scss";
+.app-cavet-board {
+  ::ng-deep nz-tag {
+    width: 90px;
+  }
+}

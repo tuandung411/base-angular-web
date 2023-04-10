@@ -1,0 +1,215 @@
+@import "../../assets/styles/color.scss";
+:host {
+  display: flex;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.page.app-transaction {
+  background-color: red !important;
+  .page-header {
+    height: 64px;
+    padding: 0;
+    background: #fff;
+
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  }
+}
+.inner-content {
+  height: 100%;
+}
+.app-layout {
+  .menu-sidebar {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    box-shadow: 2px 0 6px rgba(174, 191, 207, 0.35);
+  }
+
+  nz-sider.ant-layout-sider {
+    // background-color: #06335e;
+    background-color: $colorBackgroudWhite;
+  }
+  ul.ant-menu {
+    background-color: $colorBackgroudWhite;
+  }
+
+  ::ng-deep .ant-menu-submenu-title {
+    color: $colorBlackSub;
+    // background-color: $colorMenuHover;
+  }
+  .ant-menu-vertical .ant-menu-item::after,
+  .ant-menu-vertical-left .ant-menu-item::after,
+  .ant-menu-vertical-right .ant-menu-item::after,
+  .ant-menu-inline .ant-menu-item::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-right: 3px solid $colorPrimary1;
+  }
+  ::ng-deep li.ant-menu-submenu {
+    .ant-menu-submenu-title {
+      font-weight: 400;
+      i.ant-menu-submenu-arrow {
+        &::after,
+        &::before {
+          background-color: $colorBlackSub !important;
+        }
+      }
+    }
+    .ant-menu-sub {
+      li.ant-menu-item {
+        a {
+          font-weight: 400;
+          color: $colorBlackSub;
+        }
+      }
+    }
+  }
+  ::ng-deep li.ant-menu-submenu-selected,
+  ::ng-deep li.ant-menu-submenu-open {
+    .ant-menu-submenu-title {
+      color: $colorPrimary1;
+      background-color: $colorMenuHover;
+      i.ant-menu-submenu-arrow {
+        &::after,
+        &::before {
+          background-color: $colorPrimary1 !important;
+        }
+      }
+    }
+    .ant-menu-sub {
+      li.ant-menu-item-selected {
+        background-color: $colorMenuHover !important;
+        a {
+          color: $colorPrimary1 !important;
+        }
+      }
+    }
+  }
+  ::ng-deep li.ant-menu-item.ant-menu-item-selected {
+    background-color: $colorBackgroudWhite;
+    span {
+      color: $colorPrimary1;
+    }
+  }
+
+  ::ng-deep li.ant-menu-item {
+    span {
+      color: $colorBlackSub;
+    }
+    &::after {
+      border-right-color: $colorPrimary1;
+    }
+  }
+
+  .ant-menu-dark .ant-menu-inline.ant-menu-sub {
+    background: $colorBackgroudWhite;
+  }
+  ::ng-deep .ant-menu::after {
+    display: none !important;
+  }
+  ::ng-deep .ant-menu::before {
+    display: none !important;
+  }
+  ::ng-deep .ant-menu-dark .ant-menu-inline.ant-menu-sub {
+    background-color: $colorBackgroudWhite;
+  }
+
+  .header-trigger {
+    height: 64px;
+    padding: 20px 24px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s, padding 0s;
+  }
+  // .trigger:hover {
+  //     color: $colorMenuHover;
+  // }
+  .sidebar-logo {
+    position: relative;
+    height: 64px;
+    padding-left: 24px;
+    overflow: hidden;
+    line-height: 64px;
+    background: $colorBackgroudWhite;
+    transition: all 0.3s;
+  }
+  .sidebar-logo img {
+    display: inline-block;
+    // height: 48px;
+    // width: 48px;
+    vertical-align: middle;
+  }
+  .sidebar-logo h1 {
+    display: inline-block;
+    margin: 0 0 0 20px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+    vertical-align: middle;
+  }
+  nz-header {
+    padding: 0;
+    width: 100%;
+    z-index: 2;
+  }
+  .app-header {
+    position: relative;
+    height: 64px;
+    padding: 0;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  }
+  .app-header button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  #user-region {
+    display: inline-flex;
+    position: absolute;
+    right: 20px;
+    button {
+      height: 64px;
+    }
+
+    #username {
+      font-family: "Averta Std CY", sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 15px;
+
+      color: #000000;
+      margin-left: 5px;
+      // line-height: 64px !important;
+      align-items: center;
+    }
+
+    #user-button {
+      display: inline-flex;
+      right: 185px;
+
+      a {
+        margin-right: 6px;
+      }
+    }
+
+    .user-option-button {
+      font-size: 24px;
+      color: white;
+      margin-right: 5px;
+
+      span {
+        position: relative;
+        svg {
+          position: absolute;
+          // bottom: 5px;
+        }
+      }
+    }
+  }
+}

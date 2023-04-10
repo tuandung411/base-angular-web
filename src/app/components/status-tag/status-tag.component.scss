@@ -1,0 +1,44 @@
+@import "../../../assets/styles/color.scss";
+.app-status-tag {
+  ::ng-deep .ant-tag {
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 0px 10px;
+    width: fit-content;
+    line-height: 24px !important;
+    height: 24px !important;
+    border: none !important;
+  }
+  ::ng-deep .ant-tag.status0 {
+    background-color: rgba($colorPending, 0.15);
+    color: $colorPending;
+  }
+  ::ng-deep .ant-tag.status1 {
+    background-color: rgba($colorPending, 0.15);
+    color: $colorPending;
+  }
+  ::ng-deep .ant-tag.status2 {
+    background-color: rgba($colorProcessing, 0.15);
+    color: $colorProcessing;
+  }
+  ::ng-deep .ant-tag.status3 {
+    background-color: rgba($colorAssign, 0.15);
+    color: $colorAssign;
+  }
+  ::ng-deep .ant-tag.status4 {
+    background-color: rgba($colorPostpone, 0.15);
+    color: $colorPostpone;
+  }
+  ::ng-deep .ant-tag.status5 {
+    background-color: rgba($colorCancel, 0.15);
+    color: $colorCancel;
+  }
+  ::ng-deep .ant-tag.status6 {
+    background-color: rgba($colorProcessing, 0.15);
+    color: $colorProcessing;
+  }
+  ::ng-deep .ant-tag.status9 {
+    background-color: rgba($colorComplete, 0.15);
+    color: $colorComplete;
+  }
+}

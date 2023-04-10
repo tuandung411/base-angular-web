@@ -1,0 +1,305 @@
+@import "./assets/styles/color.scss";
+//------------------------------------- OVERALL---------------------------------
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Averta Std CY", sans-serif;
+}
+
+@font-face {
+  font-family: "Averta Std CY";
+  src: url("./assets/fonts/AvertaStdCY/AvertaStdCY-Regular_3.otf");
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $colorScrollbarTrack;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $colorScrollbarThumb;
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $colorScrollbarThumbHover;
+}
+
+// ---------------------------------- LAYOUT --------------------------------------------
+.page {
+  height: 100%;
+  background-color: transparent;
+}
+.page-header {
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 12px;
+  height: 56px;
+  background-color: $colorBackgroudWhite;
+  line-height: 56px;
+  span {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.page-container {
+  height: calc(100% - 56px);
+  padding: 12px;
+  .page-content {
+    height: 100%;
+    border-radius: 8px;
+    padding: 12px;
+    background-color: $colorBackgroudWhite;
+    .gap-1 {
+      gap: 1rem;
+    }
+  }
+}
+
+// -------------------------------------BUTTON-------------------------------------------
+
+button {
+  border-radius: 4px !important;
+}
+.default-button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+button.ant-pagination-item-link {
+  background: transparent;
+  border-color: transparent !important;
+  border: none;
+}
+.delete-button {
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.primary-button {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+button.primaryButton {
+  background-color: $colorPrimary1;
+  border-color: $colorPrimary1;
+  border-radius: 4px;
+  font-weight: 700;
+  height: 32px;
+}
+
+button.dangerButton {
+  background-color: $colorDanger;
+  border-color: $colorDanger;
+
+  border-radius: 4px;
+  font-weight: 700;
+  height: 32px;
+}
+button.outLinedButton {
+  border-radius: 4px;
+  border-color: $colorPrimary1 !important;
+  color: $colorPrimary1 !important;
+}
+button.sectionButton {
+  border-radius: 0 !important;
+  font-size: 16px !important;
+  background-color: transparent !important;
+}
+button.sectionButton.selected {
+  font-weight: bold !important;
+  color: $colorPrimary1;
+  border-bottom: 2px solid $colorPrimary1;
+}
+
+.primary-button,
+.ant-switch-checked {
+  border-color: "@primary-color";
+  background: "@primary-color";
+}
+
+// ---------------------------------------------TABLE----------------------------------
+.ant-table.ant-table-bordered {
+  thead > tr > th,
+  tbody > tr > td {
+    padding: 8px 20px !important;
+  }
+}
+.ant-table-thead > tr > th {
+  padding: 8px 4px;
+}
+.ant-table-tbody > tr > td {
+  padding: 8px 4px;
+}
+.ant-table-pagination {
+  justify-content: center !important;
+}
+.ant-pagination-item {
+  border-radius: 16px;
+}
+.ant-pagination-item-active {
+  background-color: $colorPrimary1;
+  a {
+    color: white !important;
+  }
+}
+.ant-table-thead > tr > th {
+  font-weight: bold !important;
+}
+
+//----------------------------------------- FORM------------------------------------------------------------------------
+.ant-checkbox-wrapper {
+  font-size: 16px !important;
+}
+.ant-select-item-option-content {
+  white-space: pre-wrap !important;
+  word-break: break-word;
+}
+nz-input-group,
+nz-select-top-control {
+  border-radius: 4px !important;
+}
+input {
+  border-radius: 4px !important;
+  text-overflow: ellipsis;
+}
+
+nz-form-label {
+  label {
+    display: inline-block !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    white-space: nowrap;
+    height: auto !important;
+  }
+}
+
+//------------------------------------------ MODAL -------------------------------------
+.ant-modal {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cdk-overlay-container {
+  .ant-modal[role="document"] {
+    top: auto !important;
+    nz-tag {
+      padding: 0 10px;
+      border: none;
+      border-radius: 4px !important;
+      font-size: 14px;
+    }
+  }
+  .ant-modal.modal-send-safes {
+  }
+
+  .ant-modal.modal-confirm,
+  .ant-modal.modal-deny {
+    .ant-modal-body {
+      font-size: 16px !important;
+    }
+  }
+
+  .ant-modal.modal-delete {
+    border-radius: 8px !important;
+    overflow: hidden;
+    width: 400px !important;
+    .ant-modal-body {
+      height: 180px;
+    }
+  }
+  .ant-modal.note-modal {
+    height: 200px !important;
+    .ant-modal-body {
+      height: 200px;
+    }
+  }
+  .ant-picker {
+    border-radius: 4px !important;
+  }
+  nz-date-picker {
+    width: 100% !important;
+    border-radius: 4px !important;
+  }
+
+  nz-modal-container {
+    height: 100vh !important;
+    overflow: hidden !important;
+    overflow-y: scroll !important;
+    display: flex;
+    align-items: center !important;
+  }
+
+  nz-table {
+    margin-top: 20px !important;
+  }
+  .ant-modal-body {
+    max-height: 650px !important;
+    // overflow-y: scroll;
+  }
+  .search-box {
+    padding: 8px !important;
+  }
+  .search-box input {
+    width: 188px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .search-box button {
+    width: 90px !important;
+  }
+  .search-button {
+    margin-right: 8px !important;
+  }
+
+  .tab-note {
+    height: 200px !important;
+    form {
+      align-items: center;
+    }
+  }
+}
+
+//----------------------------------------GENERAL-----------------------------------
+
+app-info-item {
+  .info-item {
+    height: max-content !important;
+  }
+}
+
+.ant-btn-primary {
+  border-color: "@primary-color" !important;
+}
+
+.ant-btn-background-ghost {
+  color: "@primary-color" !important;
+}
+
+.ant-btn-dangerous {
+  border-color: "@secondary-color" !important;
+  background: "@secondary-color";
+}

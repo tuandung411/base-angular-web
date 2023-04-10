@@ -1,0 +1,206 @@
+<div class="app-cavet-board page">
+  <div class="page-header">Danh sách cà vẹt xe</div>
+  <div class="page-container">
+    <div class="page-content">
+      <div nz-row style="margin-bottom: 10px" nzJustify="space-between">
+        <div nz-col>
+          <nz-input-group
+            style="width: 200px; margin-right: 10px"
+            nz-col
+            nzSize="large"
+            [nzPrefix]="prefixIconSearch"
+          >
+            <input
+              type="text"
+              [(ngModel)]="searchText"
+              (ngModelChange)="handleSearch($event)"
+              nz-input
+              placeholder="Tìm kiếm"
+            />
+          </nz-input-group>
+          <ng-template #prefixIconSearch>
+            <span nz-icon nzType="search"></span>
+          </ng-template>
+
+          <nz-select
+            nz-col
+            nzSize="large"
+            nzAllowClear
+            [(ngModel)]="statusFilter"
+            (ngModelChange)="filterStatus($event)"
+            nzPlaceHolder="Trạng thái"
+          >
+            <ng-container *ngFor="let item of listStatusFilter">
+              <nz-option
+                [nzValue]="item.status"
+                [nzLabel]="item.name"
+              ></nz-option>
+            </ng-container>
+          </nz-select>
+        </div>
+        <div nz-col>
+          <div nz-row>
+            <button
+              nz-col
+              (click)="directToNew()"
+              nz-button
+              nzType="primary"
+              class="primaryButton"
+            >
+              Tạo mới
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <nz-table
+        #filterTable
+        nzShowSizeChanger
+        nzTableLayout="fixed"
+        [nzFrontPagination]="false"
+        [nzLoading]="loading"
+        [nzTotal]="total"
+        [nzData]="listOfDisplayData"
+        [nzPageSize]="pageSize"
+        [nzPageIndex]="pageIndex"
+        (nzQueryParams)="onQueryParamsChange($event)"
+      >
+        <thead>
+          <tr>
+            <ng-container
+              *ngFor="let column of listColumnsDisplay; index as i"
+              [ngSwitch]="i"
+            >
+              <ng-container *ngSwitchCase="0">
+                <th scope="col" nzAlign="center" class="cl{{ i }}" colspan="1">
+                  {{ column.name }}
+                </th>
+              </ng-container>
+              <ng-container *ngSwitchCase="5">
+                <th scope="col" nzAlign="center" class="cl{{ i }}" colspan="4">
+                  {{ column.name }}
+                </th>
+              </ng-container>
+              <ng-container *ngSwitchCase="6">
+                <th scope="col" nzAlign="center" class="cl{{ i }}" colspan="2">
+                  {{ column.name }}
+                </th>
+              </ng-container>
+              <ng-container *ngSwitchDefault>
+                <th
+                  scope="col"
+                  *ngIf="!column.hidden"
+                  nzAlign="left"
+                  nzColumnKey="{{ column.key }}"
+                  class="cl{{ i }}"
+                  colspan="2"
+                  [nzSortFn]="column.sortFn"
+                >
+                  {{ column.name }}
+                </th>
+              </ng-container>
+            </ng-container>
+
+            <th scope="col" nzAlign="center" colspan="2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let data of filterTable.data; let i = index"
+            style="text-align: center"
+          >
+            <td class="cl0" colspan="1">{{ i + 1 }}</td>
+            <td style="text-align: left" class="cl1" colspan="2">
+              <a (click)="directToView(data.id)">{{ data.code }}</a>
+            </td>
+            <td style="text-align: left" class="cl2" colspan="2">
+              {{ data.customerName }}
+            </td>
+            <td style="text-align: left" class="cl3" colspan="2">
+              {{ data.branchCode }}
+            </td>
+            <td style="text-align: left" class="cl3" colspan="2">
+              {{ data.timeVehicleRegistration | date : "HH:mm - dd/MM/yyyy" }}
+            </td>
+            <td style="text-align: left" class="cl4" colspan="4">
+              {{ data.locationVehicleRegistration }}
+            </td>
+
+            <td style="text-align: center" class="cl6" colspan="2">
+              <app-status-tag status="{{ data.status }}"></app-status-tag>
+            </td>
+            <td colspan="2">
+              <div nz-row nzJustify="center">
+                <button
+                  (click)="directToEdit(data.id.toString())"
+                  nz-button
+                  nzType="link"
+                >
+                  <img alt="edit" src="assets/icons/edit-icon.svg" alt="" />
+                </button>
+                <button
+                  nz-button
+                  nzType="link"
+                  (click)="showModalDelete(data.id.toString())"
+                >
+                  <img alt="delete" src="assets/icons/delete-icon.svg" alt="" />
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <br />
+    </div>
+  </div>
+
+  <nz-modal
+    nzClassName="modal-delete"
+    nzWidth="200"
+    nzCentered
+    [(nzVisible)]="isVisibleModal"
+    (nzOnCancel)="handleCancel()"
+  >
+    <div class="modal-delete">
+      <ng-container *nzModalContent nz-row
+        ><span
+          nz-col
+          nzSpan="24"
+          nz-icon
+          style="font-size: 60px"
+          nzType="ng-zorro:warning"
+          nzTheme="outline"
+        ></span>
+        <div nz-col nzSpan="24" style="text-align: center; margin-top: 20px">
+          Bạn có chắc chắn muốn xóa tác vụ lấy cà vẹt có mã
+          <strong>{{ idCase }}</strong> ?
+        </div>
+      </ng-container>
+      <div nz-row *nzModalFooter nzJustify="center">
+        <button
+          nz-col
+          nzSpan="11"
+          nz-button
+          style="height: 48px"
+          class="outlinedButton"
+          nzType="default"
+          (click)="handleCancel()"
+        >
+          Hủy
+        </button>
+        <button
+          nz-col
+          nzSpan="11"
+          nz-button
+          nzType="primary"
+          nzDanger
+          style="height: 48px"
+          [nzLoading]="isConfirmLoading"
+          (click)="deleteCase()"
+        >
+          Xóa
+        </button>
+      </div>
+    </div>
+  </nz-modal>
+</div>

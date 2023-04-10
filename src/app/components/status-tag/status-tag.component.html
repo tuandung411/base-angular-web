@@ -1,0 +1,16 @@
+<div class="app-status-tag">
+  <nz-tag *ngIf="status == '0'" class="status{{ status }}">Mới</nz-tag>
+  <nz-tag *ngIf="status == '1'" class="status{{ status }}">Chờ xử lý</nz-tag>
+  <nz-tag *ngIf="status == '2'" class="status{{ status }}">Đang xử lý</nz-tag>
+  <nz-tag *ngIf="status == '3'" class="status{{ status }}">Hoàn thành</nz-tag>
+  <nz-tag *ngIf="status == '4'" class="status{{ status }}">Tạm hoãn</nz-tag>
+  <nz-tag *ngIf="status == '5'" class="status{{ status }}">Hủy</nz-tag>
+  <nz-tag *ngIf="status == '6'" class="status{{ status }}"
+    >RM đang xử lý</nz-tag
+  >
+  <nz-tag *ngIf="status == '7'" class="status{{ status }}"
+    >Bàn giao tỉnh</nz-tag
+  >
+  <nz-tag *ngIf="status == '8'" class="status{{ status }}">Gửi két</nz-tag>
+  <nz-tag *ngIf="status == '9'" class="status{{ status }}">Đã xác nhận</nz-tag>
+</div>

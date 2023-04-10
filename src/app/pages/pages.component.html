@@ -1,0 +1,82 @@
+<nz-layout class="app-layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <a routerLink="/user/cavet" *ngIf="isCollapsed === false"> Quản trị </a>
+      <a routerLink="/user/cavet" *ngIf="isCollapsed === true"> </a>
+    </div>
+    <ul
+      nz-menu
+      nzTheme="dark"
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+    >
+      <li nz-submenu nzTitle="Tác vụ" nzIcon="shopping" nzOpen>
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/user/cavet">Lấy cà vẹt xe</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <em
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ki
+          ></em>
+        </span>
+
+        <span id="user-region">
+          <span id="user-button"> </span>
+
+          <button
+            nz-button
+            nz-dropdown
+            [nzDropdownMenu]="menu"
+            [nzPlacement]="Position[0]"
+          >
+            <!-- Tên người dùng -->
+            <nz-avatar
+              nzText="{{ fullname.substring(0, 1) }}"
+              style="
+                color: #141ed2;
+                background-color: #b0b4fe;
+                font-weight: bold;
+              "
+            ></nz-avatar>
+            <a id="username">
+              <span> {{ fullname }}</span>
+              <span nz-icon nzType="caret-down" nzTheme="fill"></span>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <!-- <li nz-menu-item>Tài khoản</li>
+                <li nz-menu-item>Cài đặt</li> -->
+                <li nz-menu-item (click)="logout()">Đăng xuất</li>
+              </ul>
+            </nz-dropdown-menu>
+          </button>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+
+<!-- <app-spinner *ngIf="loading$ | async"></app-spinner> -->

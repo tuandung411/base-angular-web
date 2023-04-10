@@ -1,0 +1,62 @@
+<div class="login">
+  <div class="header">Đăng nhập</div>
+  <div class="main">
+    <form nz-form [formGroup]="validateForm" class="login-form">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Chưa điền tài khoản">
+          <nz-input-group nzPrefixIcon="user" class="input">
+            <input
+              type="text"
+              nz-input
+              formControlName="username"
+              placeholder="Tài khoản"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Chưa điền mật khẩu">
+          <nz-input-group
+            nzPrefixIcon="lock"
+            class="input"
+            [nzSuffix]="suffixTemplate"
+          >
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              nz-input
+              formControlName="password"
+              placeholder="Mật khẩu"
+            />
+          </nz-input-group>
+          <ng-template #suffixTemplate>
+            <em
+              nz-icon
+              [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+              (click)="passwordVisible = !passwordVisible"
+            ></em>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <button
+        class="submitButton"
+        nz-button
+        nzType="default"
+        (click)="submitForm()"
+      >
+        Đăng nhập
+      </button>
+      <div nz-row class="linkGroup">
+        <!-- <div class="forgotPass">
+          <a href="/auth/forgot-pass">Quên mật khẩu?</a>
+        </div>
+        <div class="Register">
+          <a href="/auth/register">Đăng kí</a>
+        </div> -->
+      </div>
+    </form>
+  </div>
+</div>
+<ng-container *ngIf="showLoading; else hiddenLoading">
+  <app-loading></app-loading>
+</ng-container>
+<ng-template #hiddenLoading> </ng-template>

@@ -1,0 +1,18 @@
+<div class="app-not-authorized">
+  <nz-result
+    nzStatus="403"
+    nzTitle="Lỗi 403"
+    nzSubTitle="Bạn không có quyền để truy cập chức năng này"
+  >
+    <div nz-result-extra>
+      <button
+        (click)="directBack()"
+        nz-button
+        class="primaryButton"
+        nzType="primary"
+      >
+        Quay lại
+      </button>
+    </div>
+  </nz-result>
+</div>
