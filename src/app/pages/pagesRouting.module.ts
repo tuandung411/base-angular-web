@@ -5,8 +5,6 @@ import { PagesComponent } from './pages.component';
 
 import { CavetBoardComponent } from './cavet/cavet-board/cavet-board.component';
 
-import { CavetUpdateComponent } from './cavet/cavet-update/cavet-update.component';
-
 import { AuthGuard } from '../guard/auth.guard';
 import { RoleGuard } from '../guard/role.guard';
 import { ROLES } from '../constant/var';
@@ -20,15 +18,6 @@ export const routes: Routes = [
       {
         path: 'cavet',
         component: CavetBoardComponent,
-        canActivate: [RoleGuard],
-        data: {
-          expectedRole: [ROLES.ADMIN_CN, ROLES.SUPER_ADMIN, ROLES.CV_CHI_NHANH],
-        },
-      },
-
-      {
-        path: 'cavet/:id',
-        component: CavetUpdateComponent,
         canActivate: [RoleGuard],
         data: {
           expectedRole: [ROLES.ADMIN_CN, ROLES.SUPER_ADMIN, ROLES.CV_CHI_NHANH],

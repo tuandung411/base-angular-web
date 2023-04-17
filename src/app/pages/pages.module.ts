@@ -32,7 +32,6 @@ import { PageRoutingModule } from './pagesRouting.module';
 
 import { CavetBoardComponent } from './cavet/cavet-board/cavet-board.component';
 import { StatusTagModule } from '../components/status-tag/status-tag.module';
-import { CavetUpdateComponent } from './cavet/cavet-update/cavet-update.component';
 import { LoadingModule } from '../components/loading/loading.module';
 import { InfoItemModule } from '../components/info-item/info-item.module';
 import { CavetViewComponent } from './cavet/cavet-view/cavet-view.component';
@@ -86,7 +85,6 @@ import { ModalModule } from '../components/modal/modal.module';
     PagesComponent,
     NotAuthorizedComponent,
     CavetBoardComponent,
-    CavetUpdateComponent,
     CavetViewComponent,
   ],
 })
