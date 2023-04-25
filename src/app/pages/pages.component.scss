@@ -33,7 +33,13 @@
   ul.ant-menu {
     background-color: $colorBackgroudWhite;
   }
-
+  .sidebar-logo {
+    font-weight: bold;
+    img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
   ::ng-deep .ant-menu-submenu-title {
     color: $colorBlackSub;
     // background-color: $colorMenuHover;

@@ -8,8 +8,8 @@
     [nzTrigger]="null"
   >
     <div class="sidebar-logo">
-      <a routerLink="/user/cavet" *ngIf="isCollapsed === false"> Quản trị </a>
-      <a routerLink="/user/cavet" *ngIf="isCollapsed === true"> </a>
+      <img src="../../assets/icons/logo-vns.png" alt="" />
+      <a routerLink="/user/sample" *ngIf="isCollapsed === false"> Quản trị </a>
     </div>
     <ul
       nz-menu
@@ -20,7 +20,7 @@
       <li nz-submenu nzTitle="Tác vụ" nzIcon="shopping" nzOpen>
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/user/cavet">Danh sách</a>
+            <a routerLink="/user/sample">Danh sách</a>
           </li>
         </ul>
       </li>

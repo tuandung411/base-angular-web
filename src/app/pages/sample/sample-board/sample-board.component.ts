@@ -34,7 +34,6 @@ export class SampleBoardComponent implements OnInit {
   statusFilter = '';
   isVisibleModal = false;
   constructor(
-    private cavetService: CavetService,
     private router: Router,
     private iconService: NzIconService,
     private message: NzMessageService
