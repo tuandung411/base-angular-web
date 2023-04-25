@@ -28,10 +28,6 @@ export const routes: Routes = [
         path: 'not-authorized',
         component: NotAuthorizedComponent,
       },
-
-      // { path: 'transaction', component: TransactionComponent },
-      // { path: 'transaction/report/:id', component: TransactionEditComponent },
-      // { path: 'transaction-edit/:id', component: TransactionEditComponent },
     ],
   },
 ];

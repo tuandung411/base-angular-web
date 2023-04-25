@@ -1,7 +1,5 @@
 import { NzTableFilterFn, NzTableFilterList } from 'ng-zorro-antd/table';
 
-import { NotarizeItem } from 'src/app/@core/data/notarizeItem';
-
 interface ColumnItem {
   key: string;
   name: string;

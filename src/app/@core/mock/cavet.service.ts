@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class CavetService {
   constructor(private http: HttpClient) {}
 
-  BASE_URL = environment.BASE_URL_VEHICLE;
+  BASE_URL = '';
 
   errorHandler(error: HttpErrorResponse) {
     return Observable.throw(error);

@@ -10,16 +10,8 @@ import { throwIfAlreadyLoaded } from './module-import.guard';
 
 import { AuthData } from './data/auth';
 import { UserData } from './data/user';
-import { RoleData } from './data/role';
-import { GroupData } from './data/group';
-import { UserGroupData } from './data/userGroup';
-import { NotarizeCompositeData } from './data/notarize-composite';
 
 import { AuthService } from './mock/auth.service';
-import { UserService } from './mock/user.service';
-import { RoleService } from './mock/role.service';
-import { GroupService } from './mock/group.service';
-import { NotarizeCompositeService } from './mock/notarize-composite.service';
 
 import { TokenInterceptorService } from './mock/token.service';
 
@@ -30,10 +22,6 @@ const DATA_SERVICES = [
     useClass: TokenInterceptorService,
     multi: true,
   },
-  { provide: UserData, useClass: UserService },
-  { provide: RoleData, useClass: RoleService },
-  { provide: GroupData, useClass: GroupService },
-  { provide: NotarizeCompositeData, useClass: NotarizeCompositeService },
 ];
 
 export const CORE_PROVIDERS = [...DATA_SERVICES];

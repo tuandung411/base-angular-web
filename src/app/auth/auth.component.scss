@@ -1,15 +1,17 @@
 .auth {
-    height: 100vh;
+  background-image: url("../../assets/images/his.jpg");
+  background-size: contain;
+  height: 100vh;
 
-    #logo{
-        height: 30vh;
-        margin-right: 30vh;
-    }
-    .authOutlet {
-        position: absolute;
-        right: 10vw;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-    }
+  #logo {
+    height: 30vh;
+    margin-right: 30vh;
+  }
+  .authOutlet {
+    position: absolute;
+    right: 10vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
 }

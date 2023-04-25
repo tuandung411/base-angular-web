@@ -31,18 +31,13 @@ import { PageRoutingModule } from './pagesRouting.module';
 // import { SendSafesBoardComponent } from './send-safes/send-safes-board/send-safes-board.component';
 
 import { CavetBoardComponent } from './cavet/cavet-board/cavet-board.component';
-import { StatusTagModule } from '../components/status-tag/status-tag.module';
+
 import { LoadingModule } from '../components/loading/loading.module';
-import { InfoItemModule } from '../components/info-item/info-item.module';
-import { CavetViewComponent } from './cavet/cavet-view/cavet-view.component';
 
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzResultModule } from 'ng-zorro-antd/result';
-import { NoteModule } from '../components/note/note.module';
 
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
-
-import { ModalModule } from '../components/modal/modal.module';
 
 @NgModule({
   imports: [
@@ -50,8 +45,6 @@ import { ModalModule } from '../components/modal/modal.module';
     FormsModule,
     RouterModule,
     NzLayoutModule,
-    NzStepsModule,
-    NoteModule,
     ReactiveFormsModule,
     NzCheckboxModule,
     LoadingModule,
@@ -77,15 +70,7 @@ import { ModalModule } from '../components/modal/modal.module';
     NzMessageModule,
     NzPopconfirmModule,
     NzSwitchModule,
-    StatusTagModule,
-    InfoItemModule,
-    ModalModule,
   ],
-  declarations: [
-    PagesComponent,
-    NotAuthorizedComponent,
-    CavetBoardComponent,
-    CavetViewComponent,
-  ],
+  declarations: [PagesComponent, NotAuthorizedComponent, CavetBoardComponent],
 })
 export class PagesModule {}
