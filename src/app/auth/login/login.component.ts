@@ -166,6 +166,7 @@ export class LoginComponent implements OnInit {
   }
 
   submitFormLogin(): void {
+    this.router.navigateByUrl('/user/sample');
     if (this.formDataLogin.valid) {
       this.showLoading = true;
     } else {

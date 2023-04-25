@@ -63,7 +63,11 @@
                 </ng-template>
               </nz-form-control>
             </nz-form-item>
-            <button nz-button class="login-form-button login-form-margin">
+            <button
+              (click)="submitFormLogin()"
+              nz-button
+              class="login-form-button login-form-margin"
+            >
               Đăng nhập
             </button>
             <div class="login-form-forgot">

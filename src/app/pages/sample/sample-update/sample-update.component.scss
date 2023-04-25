@@ -1,0 +1,49 @@
+@import "../../../../assets/styles/color.scss";
+.app-cavet-update {
+  .border-bottom {
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 15px;
+
+    b {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .asset-name {
+      font-weight: bold;
+      color: $colorPrimary1;
+    }
+    .section-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    #session-button button {
+      padding: 0;
+      margin-right: 15px;
+    }
+  }
+  .ant-form-vertical .ant-form-item-label,
+  .ant-col-24.ant-form-item-label,
+  .ant-col-xl-24.ant-form-item-label {
+    padding: 0 0 0px;
+  }
+  button.selected {
+    border-bottom-color: $colorPrimary1 !important;
+    border-radius: 2px 2px 0px 0px;
+    border-width: 2px !important;
+    font-weight: 400;
+    background-color: white;
+    color: $colorPrimary1;
+  }
+  ::ng-deep nz-date-picker {
+    width: 100%;
+  }
+  ::ng-deep nz-form-item > div {
+    width: 90%;
+  }
+  ::ng-deep nz-form-item > nz-form-control {
+    width: 90% !important;
+  }
+}

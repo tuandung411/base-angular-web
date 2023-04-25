@@ -1,5 +1,5 @@
 <div class="app-cavet-board page">
-  <div class="page-header">Danh sách cà vẹt xe</div>
+  <div class="page-header">Danh sách</div>
   <div class="page-container">
     <div class="page-content">
       <div nz-row style="margin-bottom: 10px" nzJustify="space-between">
@@ -21,22 +21,6 @@
           <ng-template #prefixIconSearch>
             <span nz-icon nzType="search"></span>
           </ng-template>
-
-          <nz-select
-            nz-col
-            nzSize="large"
-            nzAllowClear
-            [(ngModel)]="statusFilter"
-            (ngModelChange)="filterStatus($event)"
-            nzPlaceHolder="Trạng thái"
-          >
-            <ng-container *ngFor="let item of listStatusFilter">
-              <nz-option
-                [nzValue]="item.status"
-                [nzLabel]="item.name"
-              ></nz-option>
-            </ng-container>
-          </nz-select>
         </div>
         <div nz-col>
           <div nz-row>
@@ -110,21 +94,6 @@
             style="text-align: center"
           >
             <td class="cl0" colspan="1">{{ i + 1 }}</td>
-            <td style="text-align: left" class="cl1" colspan="2">
-              <a (click)="directToView(data.id)">{{ data.code }}</a>
-            </td>
-            <td style="text-align: left" class="cl2" colspan="2">
-              {{ data.customerName }}
-            </td>
-            <td style="text-align: left" class="cl3" colspan="2">
-              {{ data.branchCode }}
-            </td>
-            <td style="text-align: left" class="cl3" colspan="2">
-              {{ data.timeVehicleRegistration | date : "HH:mm - dd/MM/yyyy" }}
-            </td>
-            <td style="text-align: left" class="cl4" colspan="4">
-              {{ data.locationVehicleRegistration }}
-            </td>
 
             <td style="text-align: center" class="cl6" colspan="2"></td>
             <td colspan="2">

@@ -34,20 +34,14 @@ import { LoginComponent } from './login/login.component';
     AuthRoutingModule,
     NzLayoutModule,
     ReactiveFormsModule,
-    NzCheckboxModule,
     NzMessageModule,
     NzFormModule,
-
     NzIconModule,
     NzSelectModule,
     NzButtonModule,
     NzModalModule,
     NzGridModule,
-    NzPaginationModule,
-    NzDatePickerModule,
-
     NzMenuModule,
-
     NzInputModule,
     NzTableModule,
   ],

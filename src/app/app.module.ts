@@ -29,10 +29,6 @@ registerLocaleData(viI18n);
   providers: [
     { provide: NZ_DATE_LOCALE, useValue: vi },
     { provide: NZ_I18N, useValue: vi_VN },
-    // {
-    //   provide: LOCALE_ID,
-    //   useValue: , // 'de' for Germany, 'fr' for France ...
-    // },
   ],
   bootstrap: [AppComponent],
 })

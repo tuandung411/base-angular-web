@@ -3,9 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
   production: false,
-  BASE_URL_AUTH: 'http://42.96.44.215:10204/cmv-cs-api-auth-composite',
-
-  BASE_URL_USER: 'http://42.96.44.215:10204/cmv-cs-api-user-composite',
+  BASE_URL_AUTH: '',
 };
 
 /*

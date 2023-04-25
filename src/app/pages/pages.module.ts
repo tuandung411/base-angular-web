@@ -20,24 +20,18 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
-
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SpinnerModule } from '../components/spinner/spinner.module';
 import { IconsProviderModule } from '../icons-provider.module';
 
 import { PagesComponent } from './pages.component'; // <---
 import { PageRoutingModule } from './pagesRouting.module';
-// import { SendSafesBoardComponent } from './send-safes/send-safes-board/send-safes-board.component';
-
-import { CavetBoardComponent } from './cavet/cavet-board/cavet-board.component';
-
 import { LoadingModule } from '../components/loading/loading.module';
-
-import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzResultModule } from 'ng-zorro-antd/result';
 
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
+import { SampleBoardComponent } from './sample/sample-board/sample-board.component';
+import { SampleUpdateComponent } from './sample/sample-update/sample-update.component';
 
 @NgModule({
   imports: [
@@ -66,11 +60,15 @@ import { NotAuthorizedComponent } from './not-authorized/not-authorized.componen
     NzAvatarModule,
     NzDropDownModule,
     NzTabsModule,
-    Ng2SearchPipeModule,
     NzMessageModule,
     NzPopconfirmModule,
     NzSwitchModule,
   ],
-  declarations: [PagesComponent, NotAuthorizedComponent, CavetBoardComponent],
+  declarations: [
+    PagesComponent,
+    NotAuthorizedComponent,
+    SampleBoardComponent,
+    SampleUpdateComponent,
+  ],
 })
 export class PagesModule {}

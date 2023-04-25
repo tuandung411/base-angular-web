@@ -42,31 +42,6 @@ export var columnsDisplay: ColumnItem[] = [
     filterFn: null,
     sortFn: true,
   },
-  {
-    name: 'Ngày nhận',
-    key: 'timeVehicleRegistration',
-    hidden: false,
-    listOfFilter: [],
-    filterFn: null,
-    sortFn: false,
-  },
-  {
-    name: 'ĐĐ lấy ĐK xe',
-    key: 'locationVehicleRegistration',
-    hidden: false,
-    listOfFilter: [],
-    filterFn: null,
-    sortFn: false,
-  },
-
-  {
-    name: 'Trạng thái',
-    key: 'status',
-    hidden: false,
-    listOfFilter: [],
-    filterFn: null,
-    sortFn: false,
-  },
 ];
 export var listStatusFilter = [
   { status: '0', name: 'Mới' },
