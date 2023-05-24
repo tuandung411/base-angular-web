@@ -1,0 +1,13 @@
+.isSelected {
+  color: rgba(0, 0, 0, 0.4);
+}
+.search-input {
+  height: 40px;
+  width: 250px;
+  &:hover {
+    border-color: #00B335;
+  }
+  &:focus {
+    border-color: #00B335;
+  }
+}

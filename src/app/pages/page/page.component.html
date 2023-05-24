@@ -1,0 +1,95 @@
+<nz-layout>
+  <nz-header
+    style="background-color: #003828; height: 64px; padding: 0;"
+    nzAlign="center">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="flex-box" style="padding-left: 264px; position: relative;">
+        <nz-input-group>
+          <input
+            style="padding-right: 80px;"
+            class="search-input"
+            type="text"
+            [(ngModel)]="searchValue"
+            (ngModelChange)="handleOnSearch($event)"
+            nz-input
+            placeholder="Search"
+            >
+          </nz-input-group>
+          <ng-template #prefixIconSearch>
+            <span nz-icon nzType="search"></span>
+          </ng-template>
+          <div style="height: 32px;
+          width: 62px;
+          color: #ffffff;
+          background-color: rgba(255, 255, 255, 0.1);;
+          line-height: 32px;
+          border-radius: 4px;
+          position: absolute;
+          right: 10px;
+          text-align: center;">Ctr + F</div>
+      </div>
+      <div class="flex-box" style="padding-right: 24px;">
+        <img style="width: 24px; height: 18px; object-fit: cover;" src="../../assets//images/vn.png" alt="">
+        <nz-select [ngModel]="'Tiếng Việt'" nzBorderless style="color: #ffffff;">
+          <nz-option nzValue="Tiếng Việt" nzLabel="Tiếng Việt"></nz-option>
+          <nz-option nzValue="English" nzLabel="English"></nz-option>
+        </nz-select>
+        <div style="height: 16px; width: 1px; background-color: rgba(255, 255, 255, 0.25)"></div>
+        <span style="margin-left: 20px; color: #ffffff; font-size: 16px; cursor: pointer;" nz-icon nzType="bell" nzTheme="outline"></span>
+        <div style="height: 16px; width: 1px; background-color: rgba(255, 255, 255, 0.25); margin:0 20px;"></div>
+        <nz-avatar nzIcon="user"></nz-avatar>
+        <!-- <span style="margin-left: 8px; color: #ffffff;">{{nameUser}}</span> -->
+        <span style="margin-left: 8px; color: #ffffff;" nz-dropdown [nzDropdownMenu]="menu" [nzClickHide]="false">
+          {{nameUser}}
+        </span>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>Thông tin</li>
+            <li nz-menu-item>Đăng xuất</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </div>
+  </nz-header>
+</nz-layout>
+<nz-layout style="height: calc(100% - 60px);">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="240px"
+    nzBreakpoint="md"
+    [nzTrigger]="null">
+    <ul
+      nz-menu
+      nzTheme="light"
+      nzMode="inline"
+    >
+      <li nz-menu-item>
+        <span nz-icon nzType="line-chart"></span>
+        <span>Dashboard</span>
+      </li>
+      <li nz-menu-item>
+        <span nz-icon nzType="mail"></span>
+        <span>Tiếp nhận</span>
+      </li>
+      <li nz-menu-item>
+        <span nz-icon nzType="ng-zorro:target"></span>
+        <span>Khúc xạ</span>
+      </li>
+      <li nz-submenu nzTitle="Khám chữa bệnh" nzIcon="deployment-unit"></li>
+      <li nz-menu-item>
+        <span nz-icon nzType="dollar-circle"></span>
+        <span>Thanh toán</span>
+      </li>
+      <li nz-menu-item>
+        <span nz-icon nzType="medicine-box"></span>
+        <span>Kho thuốc</span>
+      </li>
+      <li nz-submenu nzTitle="Kho kính + lens" nzIcon="eye"></li>
+      <li nz-submenu nzTitle="Hệ thống" nzIcon="setting"></li>
+    </ul>
+  </nz-sider>
+  <nz-content>
+    <app-content></app-content>
+  </nz-content>
+</nz-layout>

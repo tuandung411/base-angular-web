@@ -1,0 +1,101 @@
+<nz-layout style="height: 100%">
+  <nz-content>
+    <div style="background-color: #ffffff; padding: 12px 0;">
+      <div style="padding: 0 24px;">
+        <span class="{{selectedItem == 'HOME' ? '' : 'isSelected'}}" (click)="handleOnSelectedHome()">Trang chủ</span>
+        <span style="padding: 0 15px;">/</span>
+        <span class="{{selectedItem == 'GET' ? '' : 'isSelected'}}" (click)="handleOnSelectedGet()">Tiếp nhận</span>
+        <h2>{{selectedItem == 'GET' ? 'Tiếp nhận' : 'Trang chủ'}}</h2>
+      </div>
+    </div>
+    <div style="height: 150px; padding: 12px 16px; border-radius: 8px; margin: 20px 22px 18px 22px; background-color: #ffffff; position: relative;">
+      <div style="display: flex; justify-content: space-between;">
+        <div>
+          <span style="padding-right: 56px;">Mã KB</span>
+          <input
+            type="text"
+            class="search-input"
+            [(ngModel)]="searchMKB"
+            nz-input
+            placeholder="Nhập">
+        </div>
+        <div>
+          <span style="padding-right: 56px;">Mã Y tế</span>
+          <input
+            type="text"
+            class="search-input"
+            [(ngModel)]="searchMYT"
+            nz-input
+            placeholder="Nhập">
+        </div>
+        <div>
+          <span style="padding-right: 56px;">Họ tên</span>
+          <input
+            type="text"
+            class="search-input"
+            [(ngModel)]="searchName"
+            nz-input
+            placeholder="Nhập">
+        </div>
+      </div>
+      <nz-button-group style="position: absolute; right: 16px; padding-top: 16px;">
+        <button nz-button nzType="primary" style="background-color: #00B335; border: none; width: 119px; height: 40px;" (click)="handleOnSearch()">
+          <span nz-icon nzType="search"></span>
+          <span>Tìm kiếm</span>
+        </button>
+      </nz-button-group>
+    </div>
+    <div style="height:calc(100% - 290px) ;padding: 12px 16px; border-radius: 8px; margin: 12px 22px; background-color: #ffffff; overflow: auto;">
+      <div style="width: 100%; height: 40px; border: 1px solid #eaeaea; border-bottom: none; padding-top: 10px; text-align: center;">Danh sách bệnh nhân</div>
+      <nz-table
+        #rowSelectionTable
+        nzBordered
+        nzShowSizeChanger
+        [nzData]="listOfData"
+        (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+      >
+        <thead>
+          <!-- <tr>
+             Danh sách bệnh nhân
+          </tr> -->
+          <tr>
+            <th style="text-align: center;">STT</th>
+            <th style="text-align: center;">Mã Y tế</th>
+            <th style="text-align: center;">Mã KB</th>
+            <th style="text-align: center;">Tên BN</th>
+            <th style="text-align: center;">Giới tính</th>
+            <th style="text-align: center;">Ngày sinh</th>
+            <th style="text-align: center;">Ngày tạo</th>
+            <th style="text-align: center;">Số thẻ BHYT</th>
+            <th style="text-align: center;">Xã/Huyện/Tỉnh</th>
+            <th style="text-align: center;">Tên NV</th>
+            <th style="text-align: center;">Thu tiền</th>
+            <th style="text-align: center;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="text-align: center;" *ngFor="let data of rowSelectionTable.data let index = index">
+            <td>{{ index + 1 }}</td>
+            <td>{{ data.myt }}</td>
+            <td>{{ data.mkb }}</td>
+            <td>{{ data.gender }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.birth }}</td>
+            <td>{{ data.dateCreate }}</td>
+            <td>{{ data.numberCard }}</td>
+            <td>{{ data.address }}</td>
+            <td>{{ data.nameUser }}</td>
+            <td>
+              <span *ngIf="data.hasPay" nz-icon style="font-size: 20px; cursor: pointer;" nzType="ng-zorro:success" nzTheme="fill"></span>
+            </td>
+            <td>
+              <span style="padding-left: 18px; color: red; font-size: 20px; cursor: pointer;" nz-icon nzType="delete" nzTheme="outline" (click)="handleOnDelete(data)"></span>
+              <span style="padding-left: 18px; font-size: 20px; cursor: pointer;" nz-icon nzType="printer" nzTheme="outline" (click)="handleOnPrint()"></span>
+              <span style="padding-left: 18px; font-size: 20px; cursor: pointer;" nz-icon nzType="edit" nzTheme="outline" (click)="handleOnEdit(data.id)"></span>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </nz-content>
+</nz-layout>

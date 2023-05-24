@@ -32,6 +32,8 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 import { SampleBoardComponent } from './sample/sample-board/sample-board.component';
 import { SampleUpdateComponent } from './sample/sample-update/sample-update.component';
+import { PageComponent } from './page/page.component';
+import { ContentComponent } from './page/content/content.component'
 
 @NgModule({
   imports: [
@@ -69,6 +71,8 @@ import { SampleUpdateComponent } from './sample/sample-update/sample-update.comp
     NotAuthorizedComponent,
     SampleBoardComponent,
     SampleUpdateComponent,
+    PageComponent,
+    ContentComponent
   ],
 })
 export class PagesModule {}
