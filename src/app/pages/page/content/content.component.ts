@@ -95,15 +95,7 @@ export class ContentComponent implements OnInit {
     this.listOfData = this.listOfData.filter(item => item.id !== data.id)
   }
   async handleOnPrint(){
-    const searchKeyword = 'a';
-    const apiUrl = `https://646c8e697b42c06c3b2b826a.mockapi.io/api/product?search=${searchKeyword}`;
 
-    await this.http.get(apiUrl)
-      .subscribe((response) => {
-        console.log('Kết quả tìm kiếm:', response);
-      }, (error) => {
-        console.error('Lỗi khi tìm kiếm sản phẩm:', error);
-      });
   }
   handleOnEdit(id){
   }
