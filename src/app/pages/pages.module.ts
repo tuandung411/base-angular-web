@@ -23,6 +23,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { SpinnerModule } from '../components/spinner/spinner.module';
 import { IconsProviderModule } from '../icons-provider.module';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb'
 
 import { PagesComponent } from './pages.component'; // <---
 import { PageRoutingModule } from './pagesRouting.module';
@@ -65,6 +66,7 @@ import { ContentComponent } from './page/content/content.component'
     NzMessageModule,
     NzPopconfirmModule,
     NzSwitchModule,
+    NzBreadCrumbModule
   ],
   declarations: [
     PagesComponent,

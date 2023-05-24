@@ -2,9 +2,17 @@
   <nz-content>
     <div style="background-color: #ffffff; padding: 12px 0;">
       <div style="padding: 0 24px;">
-        <span class="{{selectedItem == 'HOME' ? '' : 'isSelected'}}" (click)="handleOnSelectedHome()">Trang chủ</span>
+        <!-- <span class="{{selectedItem == 'HOME' ? '' : 'isSelected'}}" (click)="handleOnSelectedHome()">Trang chủ</span>
         <span style="padding: 0 15px;">/</span>
-        <span class="{{selectedItem == 'GET' ? '' : 'isSelected'}}" (click)="handleOnSelectedGet()">Tiếp nhận</span>
+        <span class="{{selectedItem == 'GET' ? '' : 'isSelected'}}" (click)="handleOnSelectedGet()">Tiếp nhận</span> -->
+        <nz-breadcrumb>
+          <nz-breadcrumb-item>
+            <a>Trang chủ</a>
+          </nz-breadcrumb-item>
+          <nz-breadcrumb-item>
+            <a [routerLink]="['user/page']">Tiếp nhận</a>
+          </nz-breadcrumb-item>
+        </nz-breadcrumb>
         <h2>{{selectedItem == 'GET' ? 'Tiếp nhận' : 'Trang chủ'}}</h2>
       </div>
     </div>

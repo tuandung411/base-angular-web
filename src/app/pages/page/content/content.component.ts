@@ -83,7 +83,7 @@ export class ContentComponent implements OnInit {
   }
 
   fillterItem(value, array, key){
-    return array = array.filter(item => item[key].toString().includes(value.trim()))
+    return array = array.filter(item => item[key].toString().includes(value.trim()));
   }
 
   async handleOnDelete(data){
