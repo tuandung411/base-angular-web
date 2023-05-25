@@ -10,6 +10,7 @@ const iconTarget = '<?xml version="1.0" encoding="utf-8"?><svg version="1.1" id=
 })
 export class PageComponent implements OnInit {
 
+  language: 'Tiếng Việt' | 'English' = 'Tiếng Việt';
   searchValue: string = '';
   nameUser: string = 'D.D Nguyễn Đình Phong'
 

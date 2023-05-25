@@ -21,8 +21,9 @@
           <div class="copy-input">Ctr + F</div>
       </div>
       <div class="flex-box" style="padding-right: 24px;">
-        <img style="width: 24px; height: 18px; object-fit: cover;" src="../../assets//images/vn.png" alt="">
-        <nz-select [ngModel]="'Tiếng Việt'" nzBorderless style="color: #ffffff;">
+        <img *ngIf="language == 'Tiếng Việt'" style="width: 24px; height: 18px; object-fit: cover;" src="../../assets//images/vn.png" alt="">
+        <img *ngIf="language == 'English'" style="width: 24px; height: 18px; object-fit: cover;" src="../../assets//images/es.png" alt="">
+        <nz-select [(ngModel)]="language" nzBorderless style="width: 110px; color: #ffffff;">
           <nz-option nzValue="Tiếng Việt" nzLabel="Tiếng Việt"></nz-option>
           <nz-option nzValue="English" nzLabel="English"></nz-option>
         </nz-select>
