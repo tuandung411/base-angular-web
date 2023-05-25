@@ -7,6 +7,18 @@
   border-radius: 8px !important;
 }
 
+.copy-input {
+  height: 32px;
+  width: 62px;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);;
+  line-height: 32px;
+  border-radius: 4px;
+  position: absolute;
+  right: 10px;
+  text-align: center;
+}
+
 .header-wrapper {
   display: flex;
   align-items: center;
@@ -46,4 +58,10 @@
     color: #00B335 !important;
   }
 
+}
+.ant-menu-submenu-active {
+  color: #00B335 !important;
+  &:hover {
+    color: #00B335 !important;
+  }
 }

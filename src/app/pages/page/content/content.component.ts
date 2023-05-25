@@ -20,8 +20,8 @@ export class ContentComponent implements OnInit {
   searchMKB: string;
   searchMYT: string;
   searchName: string = '';
-  listOfData: any;
-  listApi :any;
+  listOfData: any[] = [];
+  listApi: any[] = [];
 
   constructor(
     private iconService: NzIconService,
@@ -36,9 +36,9 @@ export class ContentComponent implements OnInit {
 
   async getListData(){
     await this.http.get('https://646c8e697b42c06c3b2b826a.mockapi.io/api/product')
-    .subscribe((data) => {
+    .subscribe((data: any) => {
     this.listApi = data;
-    this.listOfData = this.listApi
+    this.listOfData = this.listApi;
   });
   }
 
@@ -80,6 +80,18 @@ export class ContentComponent implements OnInit {
     if(!this.searchMKB && !this.searchMYT && this.searchName){
       this.listOfData = this.fillterItem(this.searchName, this.listApi, 'name');
     }
+    if(this.searchMKB && this.searchMYT && !this.searchName){
+      this.listOfData = this.listApi.filter(e => (e.mkb.toString().includes(this.searchMKB) && e.myt.toString().includes(this.searchMYT)));
+    }
+    if(!this.searchMKB && this.searchMYT && this.searchName){
+      this.listOfData = this.listApi.filter(e => (e.myt.toString().includes(this.searchMYT) && e.name.toLowerCase().trim().includes(this.searchName)));
+    }
+    if(this.searchMKB && !this.searchMYT && this.searchName){
+      this.listOfData = this.listApi.filter(e => (e.mkb.toString().includes(this.searchMKB) && e.name.toLowerCase().trim().includes(this.searchName)));
+    }
+    if(this.searchMKB && this.searchMYT && this.searchName) {
+      this.listOfData = this.listApi.filter(e => (e.mkb.toString().includes(this.searchMKB) && e.myt.toString().includes(this.searchMYT) && e.name.toLowerCase().trim().includes(this.searchName)));
+    }
   }
 
   fillterItem(value, array, key){
@@ -91,6 +103,7 @@ export class ContentComponent implements OnInit {
       console.log('Xoá thành công');
     }, (error) => {
       console.error('Lỗi khi xoá', error);
+      return
     });
     this.listOfData = this.listOfData.filter(item => item.id !== data.id)
   }
